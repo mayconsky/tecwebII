@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <title>Hospital D'Luz</title>
+    <script>
+        $(document).ready(function () {
+            var cont = 0;
+            $("#register").click(function () {
+                var str = $("#patientName").val();
+                var html = '<p id=patient draggable="true" ondragstart="drag(event)"width="20" height="8"' + cont + '>';
+                html += str + '<button>X</button>';
+                html += '</p>';
+                cont++;
+                $("#medicalCare").append(html);
+                $("#button").click(function () {
+                    $(this).parent("p").remove();
+
+                });
+            })
+
+            $(document).ready(function () {
+                var cont2 = 0;
+                $("#registery").click(function () {
+                    var str = $("#patientName").val();
+                    var html = '<p id=patient draggable="true" ondragstart="drag(event)" width="20" height="8"' + cont2 + '>';
+                    html += str + '<button id=remove>X</button>';
+                    html += '</p>';
+                    cont2++;
+                    $("#quickCare").append(html);
+                    $("button").click(function () {
+                        $(this).parent("p").remove();
+                    });
+                })
+            });
+
+            $(document).ready(function () {
+                var cont3 = 0;
+                $("#registerr").click(function () {
+                    var str = $("#patientName").val();
+                    var html = '<p id=patient draggable="true" ondragstart="drag(event)" width="20" height="8"' + cont3 + '>';
+                    html += str + '<button id=remove>X</button>';
+                    html += '</p>';
+                    cont3++;
+                    $("#emergencyCare").append(html);
+                    $("button").click(function () {
+                        $(this).parent("p").remove();
+                    });
+                })
+            });
+        });
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            ev.target.appendChild(document.getElementById(data));
+        }
+    </script>
+    <style>
+        #medicalCare {
+            width: 25vh;
+            height: 100vh;
+            background-color: green;
+            float: left;
+            text-align: center;
+            border: solid;
+            border-color: black;
+        }
+
+        #quickCare {
+            width: 25vh;
+            height: 100vh;
+            background-color: yellow;
+            float: left;
+            text-align: center;
+            border: solid;
+            border-color: black;
+        }
+
+        #emergencyCare {
+            width: 25vh;
+            height: 100vh;
+            background-color: red;
+            float: left;
+            text-align: center;
+            border: solid;
+            border-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container row">
+        <label>
+            <h1>Cadastre o Paciente:</h1>
+        </label>
+        <input type="text" id="patientName">
+        <button id="register"><Strong>Ala Verde</Strong></button>
+        <button id="registery"><Strong>Ala Amarela</Strong></button>
+        <button id="registerr"><Strong>Ala Vermelha</Strong></button>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div id="medicalCare" class="col" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <p>
+                <h3>Baixa Gravidade</h3>
+                </p>
+            </div>
+            <div id="quickCare" class="col" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <p>
+                <h3>Gravidade</h3>
+                </p>
+            </div>
+            <div id="emergencyCare" class="col" ondrop="drop(event)" ondragover="allowDrop(event)">
+                <p>
+                <h3>Alta Gravidade</h3>
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
